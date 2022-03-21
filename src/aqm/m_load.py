@@ -36,6 +36,15 @@ def convert_str2int32(df,column):
     return df
 
 
+def trans_columns(df):
+    convert_str2int32(df, 'measureid')
+    convert_str2int32(df, 'statefips')
+    convert_str2int32(df, 'countyfips')
+    convert_str2int32(df, 'reportyear')
+    convert_str2float(df, 'value')
+    return df   
+
+
 def save_to_db(df, engine, table_name):
     try:
         df.to_sql('measures_air_quality', con=engine, if_exists='replace')
@@ -75,6 +84,9 @@ def main():
     engine = create_engine(db_url, echo=False)
 
     data = load_json_2_dataframe(args.file_measures)
+
+    trans_columns(data)
+
     save_to_db(data, engine, args.table_name)      
     print("Measures imported sucessfull!")
 
