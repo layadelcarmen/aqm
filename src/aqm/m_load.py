@@ -27,12 +27,12 @@ def load_json_2_dataframe(url_json):
 
 
 def convert_str2float(df,column):
-    df[column] = df[column].astype(float)
+    df[column] = df[column].astype('float')
     return df
 
 
-def add_column_discount(df):
-    df['discount'] = (df['old_price'] - df['price'])*100/df['old_price']
+def convert_str2int32(df,column):
+    df[column] = df[column].astype('int32')
     return df
 
 
