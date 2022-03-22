@@ -1,0 +1,3 @@
+include requirements.txt
+include CHANGELOG.rst
+recursive-include sql_script *

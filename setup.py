@@ -8,7 +8,7 @@ regexp = re.compile(r'.*__version__ = [\'\"](.*?)[\'\"]', re.S)
 base_package = 'm_load'
 base_path = os.path.dirname(__file__)
 
-init_file = os.path.join(base_path, 'src', 'm_load', '__init__.py')
+init_file = os.path.join(base_path, 'src', 'aqm', '__init__.py')
 with open(init_file, 'r') as f:
     module_content = f.read()
 
@@ -40,11 +40,11 @@ requirements = parse_requirements('requirements.txt')
 
 if __name__ == '__main__':
     setup(
-        name='m_load',
-        description='Python script to load air quality measures json to a PostgreSQL database.',
+        name='measure_load',
+        description='Python script to load air quality measures JSON to a PostgreSQL database ad create some views.',
         long_description='\n\n'.join([readme, changes]),
         entry_points={
-        'console_scripts': ['m-load=m_load.m_load:main'],
+        'console_scripts': ['m-load=aqm.m_load:main', 'r-views=aqm.run_create_views:main'],
         },
         license='Not open source',
         url='https://github.com/layadelcarmen/aqm',
@@ -60,7 +60,5 @@ if __name__ == '__main__':
         zip_safe=False,
         classifiers=['Development Status :: 3 - Alpha',
                      'Intended Audience :: Developers',
-                     'Programming Language :: Python :: 3.6',
-                     'Programming Language :: Python :: 3.7',
                      'Programming Language :: Python :: 3.8']
     )
