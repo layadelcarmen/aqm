@@ -2,7 +2,7 @@ measures-load
 
 ############
 
-Python scripts to load air quality measure json file to a PostgreSQL database, 
+Python scripts to load air quality measure json file into a PostgreSQL database, 
 and create some interesting views to inspect data.
 
 
@@ -51,5 +51,4 @@ An aditional script to drop the views is also available.
 Further improvements:
 
 - Expose view's results using a REST_API
-
 
