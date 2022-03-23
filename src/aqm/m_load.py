@@ -58,7 +58,7 @@ def save_to_db(df, engine, table_name):
 def main():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("-t", "--file-measures",
+    parser.add_argument("-f", "--file-measures",
                         help="JSON file with air quality measures")
     parser.add_argument("-u", "--db-user",
                         default="postgres",
@@ -76,7 +76,7 @@ def main():
                         default="Tests",
                         help="DB name")
     parser.add_argument("-n", "--table-name",
-                        default="product",
+                        default="air_quality_measures",
                         help="Table name")                                                                                                                                                                 
     args = parser.parse_args()
 
