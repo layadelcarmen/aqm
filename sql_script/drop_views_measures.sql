@@ -1,0 +1,13 @@
+DROP VIEW vw_sum_no_days_with_max_avg_over_ozone_concentration_per_year;
+ 
+DROP VIEW  vw_year_with_max_no_days_ozone_conc;
+ 
+DROP VIEW  vw_max_measure_value_per_state;
+
+DROP VIEW  vw_avg_persons_day_with_pm25_per_year_state;
+
+DROP VIEW  vw_max_accumulate_no_days_with_avg_ozone_concent_per_state;
+
+DROP VIEW  vw_avg_person_day_wt_max_8hr_state;
+
+DROP VIEW  vw_county_with_min_no_days_avg_ozone_concent_per_state_year
