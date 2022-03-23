@@ -42,9 +42,6 @@ def main():
                         help="DB name")                                                                                                                                                             
     args = parser.parse_args()
 
-    #db_url = f'postgresql://{args.db_user}:{args.db_password}@{args.db_host}:{args.db_port}/{args.db_name}'
-    #engine = create_engine(db_url, echo=False)
-
     conn = psycopg2.connect(
     database=args.db_name, user=args.db_user, password=args.db_password, host=args.db_host, port=int(args.db_port)
     )
