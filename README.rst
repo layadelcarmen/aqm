@@ -1,57 +1,55 @@
-m-load
+measures-load
+
 ############
 
-Python script to load air a json file with quality measures to a PostgreSQL database.
+Python scripts to load air quality measure json file to a PostgreSQL database, 
+and create some interesting views to inspect data.
 
 
 Quickstart
 ==========
 
-m-load is available on PyPI and can be installed with `pip <https://pip.pypa.io>`_.
+measures-load is available on PyPI and can be installed with `pip <https://pip.pypa.io>`_.
 
 .. code-block:: console
 
-    $ pip install -e m_load
+    $ pip install -e measure-load
 
-After installing m-load you can use it like any other Python script.
+After installing, two scripts will be available in the command line: 
 
-
-To test the script use this example:
+1.- m-load: Load measure file.
 
 .. code-block:: console
 
    $ m-load --file-json URL_FILE_JSON -u <POSTGRES_USER> -a <POSTGRES_PASSWORD> -s <SERVER_HOST> 
  -p 5432 -d <DATABASE> -n <TABLENAME>
 
- 
+ Example to mload with default file location:
 
-  -h, --help            show this help message and exit
-  -t FILE_JSON, --file-json FILE_JSON
-                        JSON file
-  -u DB_USER, --db-user DB_USER
-                        DB user
-  -a DB_PASSWORD, --db-password DB_PASSWORD
-                        DB password
-  -s DB_HOST, --db-host DB_HOST
-                        Host
-  -p DB_PORT, --db-port DB_PORT
-                        Connexion port
-  -d DB_NAME, --db-name DB_NAME
-                        DB name
-  -n TABLE_NAME, --table-name TABLE_NAME
-                        Table name
+.. code-block:: console
+
+$ m-load --file-json https://data.cdc.gov/api/views/cjae-szjv/rows.json -u <POSTGRES_USER> -a <POSTGRES_PASSWORD> -s <SERVER_HOST> 
+ -p 5432 -d <DATABASE> 
+
+* use the default TABLENAME air_quality_measures to test properly the sql_script.
+
+
+
+2.- r-views: Create some SQL views in the database 
+
+Check SQL views 
+ 
+   $ r-views --file-script-sql PATH_CREATE_VIEWS -u <POSTGRES_USER> -a <POSTGRES_PASSWORD> -s <SERVER_HOST> 
+ -p 5432 -d <DATABASE>
+
+
+The sql script file is available sql_script/create_views_measures.sql in the same repo.
+An aditional script to drop the views is also available.
+
 
 
 Further improvements:
 
-This code solves the basic requiremets described for the Challenge in the easiest way. 
-However some features could be added to improve the data quality and the process:
-
-1) Analysis of the best matching data types in Postgres with the corresponding values in the dataframe.
-
-2) For organizational/informational reasons would be desired the column discount after the related column old_price.
-Transform function add_column_discount to use DAtaframe.insert instead, with the precalculated column discount as parameter.
-
-3) A cleaning in some fields would be desired: Status contains some  points(.) at the end, colors are not normalized, etc.
+- Expose view's results using a REST_API
 
 
